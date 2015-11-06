@@ -1,0 +1,56 @@
+== Gem required for push notificatio
+
+1. apn_on_rails (For iphone)
+
+2. gcm_on_rails (For android)
+
+
+== Configuration for apn_on_rails
+
+1. Add gem 'apn_on_rails' in Gemfile.
+
+2. Run
+       <tt>ruby script/rails generate apn_on_rails:install</tt>
+
+3. $rake db:migrate
+
+4. script/rails generate configatron:install
+
+5. Then customize the config/configatron files that were generated to your settings.
+
+  # development (delivery):
+  configatron.apn.passphrase # => ''
+  configatron.apn.port # => 2195
+  configatron.apn.host # => 'gateway.sandbox.push.apple.com'
+  configatron.apn.cert #=> File.join(RAILS_ROOT, 'config', 'apple_push_notification_development.pem')
+
+  # production (delivery):
+  configatron.apn.host # => 'gateway.push.apple.com'
+  configatron.apn.cert #=> File.join(RAILS_ROOT, 'config', 'apple_push_notification_production.pem')
+
+  # development (feedback):
+  configatron.apn.feedback.passphrase # => ''
+  configatron.apn.feedback.port # => 2196
+  configatron.apn.feedback.host # => 'feedback.sandbox.push.apple.com'
+  configatron.apn.feedback.cert #=> File.join(RAILS_ROOT, 'config', 'apple_push_notification_development.pem')
+
+  # production (feedback):
+  configatron.apn.feedback.host # => 'feedback.push.apple.com'
+  configatron.apn.feedback.cert #=> File.join(RAILS_ROOT, 'config', 'apple_push_notification_production.pem')
+
+
+== Configuration for gcm_on_rails
+
+1. Add gem 'gcm_on_rails' in Gemfile.
+
+2. To create the tables needed for Gcm on Rails, run the following task:
+    <tt>$ rails generate gcm_migrations</tt>
+
+3. An initialzer script that can be put in config/initializers/gcm_on_rails.rb
+   will suffice. Below is an example of such a script.
+
+   configatron.gcm_on_rails.api_url = 'https://android.googleapis.com/gcm/send'
+   configatron.gcm_on_rails.api_key = 'AAAAAAPPPPPPPIIIIIIIKKKKKEEEEYYYYY'
+   configatron.gcm_on_rails.app_name = 'com.yourapppackage.com'
+   configatron.gcm_on_rails.delivery_format = 'json'
+
