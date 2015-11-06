@@ -1,0 +1,21 @@
+<h1>Sample Application</h1>
+<div ng-init="countries=[{locale:'en-US',name:'United States'},
+                                    {locale:'en-GB',name:'United Kingdom'},
+                                    {locale:'en-FR',name:'France'}]">
+   <p>Enter your Name: <input type="text" ng-model="name"></p>
+   <p>Hello <span ng-bind="name"></span>!</p>
+   <p>List of Countries with locale:</p>
+   <ol>
+      <li ng-repeat="country in countries">
+         {{ 'Country: ' + country.name + ', Locale: ' + country.locale }}
+      </li>
+   </ol>
+</div>
+<div ng-init="quantity=5;cost=30; student={firstname:'Snehal',lastname:'Singh',rollno:51};marks=[80,67,75,79,50]">
+   <p>Hello {{student.firstname + " " + student.lastname}}!</p>
+   <p>Expense on Books : {{cost * quantity}} Rs</p>
+   <p>Roll No: {{student.rollno}}</p>
+   <p>Marks(Math): {{marks[3]}}</p>
+   <p>Marks(English): {{marks[1]}}</p>
+   <p>Marks(History): {{marks[0]}}</p>
+</div>
